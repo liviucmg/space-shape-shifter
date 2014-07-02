@@ -1,0 +1,8 @@
+{
+    "name": "space-shape-shifter",
+    "version": "1.0.0",
+    "description": "HTML5 shoot 'em up game.",
+    "dependencies": {
+        "howler.js": "~1.1.22"
+    }
+}

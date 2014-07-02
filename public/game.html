@@ -1,0 +1,133 @@
+﻿<html>
+	<head>
+		<title>Game - SpaceShapeShifter</title>
+		<meta name="description" content="Play SpaceShapeShifter - a small online shoot-em-up game.">
+		<meta name="keywords" content="games, shootemup, online, fun, entertainment">
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<link rel="stylesheet" href="style.css?v=1.0">
+		<script type="text/javascript" src="bower_components/howler.js/howler.min.js"></script>
+		<script type="text/javascript" src="game.js?v=1.2"></script>
+		<script type="text/javascript" src="data.js?v=1.2"></script>
+	</head>
+	<body>
+		<a class="header">SpaceShapeShifter</a>
+		<ul class="menu">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="game.html#game" class="s">Play!</a></li>
+			<li><a href="about.html">About</a></li>
+		</ul>
+		<div class="game">		
+			<h1>Play!</h1>
+			<a name="game"></a>
+			<div style="margin-bottom: 4px;">
+				<b>Instructions</b>: <b>Arrows</b> to move; <b>Space</b> to fire;<br>
+				<b>Q</b>
+				<span class="game_bonus_red"><b>W</b></span>
+				<span class="game_bonus_green"><b>E</b></span>
+				<span class="game_bonus_blue"><b>R</b></span>
+				for normal /
+				<span class="game_bonus_red"><b>red</b></span> /
+				<span class="game_bonus_green"><b>green</b></span> /
+				<span class="game_bonus_blue"><b>blue</b></span>
+				forms
+				(<span class="game_bonus_red"><b>damage</b></span>,
+				<span class="game_bonus_green"><b>speed</b></span>,
+				<span class="game_bonus_blue"><b>health</b></span>).
+				Requires 3 diamonds + 1 per 5 sec.
+				<br>
+				Refresh to restart. Best viewed in Chrome, fullscreen.
+			</div>
+			<div class="game_canvasAndLog">
+				<canvas id="game_canvas" class="game_canvas" width="800" height="600" tabindex="0"></canvas>
+				<div id="log" class="game_log">Good luck!</div>
+			</div>			
+			
+			<div class="game_sidebar">
+				
+				<table class="game_bars">
+					<tr>
+						<th>SP</th>
+						<td><div id="game_bars_sp" class="game_bars_sp"><div></div><div></div></div></td>
+					</tr>
+					<tr>
+						<th>HP</th>
+						<td><div id="game_bars_hp" class="game_bars_hp"><div></div><div></div></div></td>
+					</tr>
+					<tr>
+						<th>MP</th>
+						<td><div id="game_bars_mp" class="game_bars_mp"><div></div><div></div></div></td>
+					</tr>
+				</table>				
+				
+				<table class="game_shipStats">
+					<tr>
+						<th>Weapon damage</th>
+						<td><div id="game_shipStats_weaponDamage" class="game_bonus_red"></td>
+					</tr>
+					<tr>
+						<th>Weapon cooldown</th>
+						<td><div id="game_shipStats_weaponCooldown" class="game_bonus_red"></td>
+					</tr>
+					<tr>
+						<th>Shield recharge</th>
+						<td><div id="game_shipStats_shieldRecharge" class="game_bonus_blue"></td>
+					</tr>
+					<tr>
+						<th>Mana recharge</th>
+						<td><div id="game_shipStats_manaRecharge" class="game_bonus_green"></td>
+					</tr>
+					<tr>
+						<th>Speed</th>
+						<td><div id="game_shipStats_speed" class="game_bonus_green"></td>
+					</tr>
+					<tr>
+						<th>Max SP</th>
+						<td><div id="game_shipStats_maxSp" class="game_bonus_blue"></td>
+					</tr>
+					<tr>
+						<th>Max HP</th>
+						<td><div id="game_shipStats_maxHp" class="game_bonus_blue"></td>
+					</tr>
+					<tr>
+						<th>Max MP</th>
+						<td><div id="game_shipStats_maxMp" class="game_bonus_green"></td>
+					</tr>
+				</table>				
+				
+				<table class="game_shipStats">
+					<tr>
+						<th>Red diamonds</th>
+						<td><div class="game_bonus_red"><b id="game_bonusStats_redDiamonds"></b></td>
+					</tr>
+					<tr>
+						<th>Green diamonds</th>
+						<td><div class="game_bonus_green"><b id="game_bonusStats_greenDiamonds"></b></td>
+					</tr>
+					<tr>
+						<th>Blue diamonds</th>
+						<td><div class="game_bonus_blue"><b id="game_bonusStats_blueDiamonds"></b></td>
+					</tr>
+					<tr>
+						<th>Score</th>
+						<td><div id="game_score"></td>
+					</tr>
+					<tr>
+						<th>FPS</th>
+						<td><div id="game_fps"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<script>		
+			var options = {
+				canvasId: "game_canvas"
+			};
+		
+			var game = new Game(options);
+			game.start();
+			window.onload = function() {
+				document.getElementById("game_canvas").focus();
+			};		
+		</script>	
+	</body>
+</html>
