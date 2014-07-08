@@ -560,7 +560,7 @@ function Game(options) {
 		player.mpPerTickBonus = playerShipDef.def.mpPerTickMultiplier * $$.playerStatBonuses[STAT_BONUS_GREEN];
 		player.mpPerTick = playerShipDef.def.mpPerTick + player.mpPerTickBonus;
 		
-		player.speedBonus = Math.min(3.5 - playerShipDef.def.speed, playerShipDef.def.speedMultiplier * $$.playerStatBonuses[STAT_BONUS_GREEN]);
+		player.speedBonus = Math.min(4 - playerShipDef.def.speed, playerShipDef.def.speedMultiplier * $$.playerStatBonuses[STAT_BONUS_GREEN]);
 		player.speed = playerShipDef.def.speed + player.speedBonus;
 		
 		player.maxMpBonus = playerShipDef.def.maxMpMultiplier * $$.playerStatBonuses[STAT_BONUS_GREEN];
