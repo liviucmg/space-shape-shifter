@@ -4,7 +4,7 @@
 
 A small shoot 'em up game made using HTML5 and JavaScript.
 
-[Check out the demo!](http://liviucmg.com/space-shape-shifter/)
+[Check out the demo!](http://spaceshapeshifter.liviucmg.com/index.html)
 
 ## Screenshot
 ![Space Shape Shifter](https://raw.githubusercontent.com/liviucmg/space-shape-shifter/master/assets/screenshot1.png)
