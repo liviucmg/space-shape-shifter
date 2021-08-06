@@ -139,8 +139,8 @@ function Game(options) {
 	loadData($$);
 	
 	$$.randomEnemies = [{
-		aDiff: 0, // minutes
-		bDiff: 6, // minutes
+		aDiff: 0, // At this minute, enemies will spawn with "aSteps" frequency.
+		bDiff: 6, // At this minute and beyond, enemies will spawn with "bSteps" frequency.
 		aSteps: 3, // seconds
 		bSteps: 0.2, // seconds
 		f: function() {createRandomMine(0);}
@@ -200,6 +200,13 @@ function Game(options) {
 		infinite: false,
 		f: function() {createRandomDiamond(Math.floor(Math.random() * 3));}
 	}, {
+		aDiff: 0,
+		bDiff: 30,
+		aSteps: 1,
+		bSteps: 0.001,
+		infinite: false,
+		f: function() {createRandomDiamond(Math.floor(Math.random() * 3));}
+	}, {
 		aDiff: 1 / 60 * 15,
 		bDiff: 1 / 60 * 25,
 		aSteps: 0.05,
@@ -239,12 +246,24 @@ function Game(options) {
         bSteps: 5,
         f: function() {createRandomEnemy(4, 50, 1);}
     }, {
-        aDiff: 1,
-        bDiff: 15,
-        aSteps: 70,
-        bSteps: 5,
-        f: function() {createRandomEnemy(5, 50, 1);}
-    }];
+		aDiff: 1,
+		bDiff: 15,
+		aSteps: 70,
+		bSteps: 5,
+		f: function() {createRandomEnemy(5, 50, 1);}
+	}, {
+		aDiff: 4,
+		bDiff: 20,
+		aSteps: 100,
+		bSteps: 5,
+		f: function() {createRandomEnemy(7, Math.floor(Math.random() * 50) + 50, 1);}
+	}, {
+		aDiff: 5,
+		bDiff: 30,
+		aSteps: 200,
+		bSteps: 10,
+		f: function() {createRandomEnemy(6, Math.floor(Math.random() * 50) + 50, 1);}
+	}];
 	for (i in $$.randomEnemies) {
 		$$.randomEnemies[i].aDiff *= 60;
 		$$.randomEnemies[i].bDiff *= 60;
@@ -465,7 +484,8 @@ function Game(options) {
         
 		var backgroundMusic = [
 			'Eric_Skiff_-_04_-_All_of_Us.ogg',
-			'Eric_Skiff_-_07_-_Were_the_Resistors.ogg'
+			'Eric_Skiff_-_07_-_Were_the_Resistors.ogg',
+			'Eric_Skiff-05-Come-and-Find-Me.ogg',
 		];
 		
 		var sound = new Howl({
@@ -643,22 +663,22 @@ function Game(options) {
 					}
 					
 					//log.add("Coll: " + cd0 + " - " + cd1);					
-                    
-                    // Play audio        
-                    if (components[AUDIO_COMPONENT][cd0] != undefined) {
-                        if (components[AUDIO_COMPONENT][cd0].onHit != undefined) { 
-							var sound = new Howl({
-								urls: ["assets/" + components[AUDIO_COMPONENT][cd0].onHit]
-							}).play();
-                        }
-                    }
-                    if (components[AUDIO_COMPONENT][cd1] != undefined) {
-                        if (components[AUDIO_COMPONENT][cd1].onHit != undefined) {
-							var sound = new Howl({
-								urls: ["assets/" + components[AUDIO_COMPONENT][cd1].onHit]
-							}).play();
-                        }
-                    }
+
+					// Play audio
+					const a0 = components[AUDIO_COMPONENT][cd0];
+					if (a0 != undefined && a0.onHit != undefined) {
+						var sound = new Howl({
+							urls: ["assets/" + a0.onHit],
+							volume: a0.volume ?? 1,
+						}).play();
+					}
+					const a1 = components[AUDIO_COMPONENT][cd1];
+					if (a1 != undefined && a1.onHit != undefined) {
+						var sound = new Howl({
+							urls: ["assets/" + a1.onHit],
+							volume: a1.volume ?? 1,
+						}).play();
+					}
                     
 					
 				}
